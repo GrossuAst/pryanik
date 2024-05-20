@@ -1,0 +1,99 @@
+.main {
+    box-sizing: border-box;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(239, 239, 239);
+}
+
+.title {
+    margin: 0;
+}
+
+.tableHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.addButton {
+    box-sizing: border-box;
+    padding: 12px 44px;
+    font-size: 18px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    background: rgb(247, 238, 85);
+    cursor: pointer;
+    line-height: 12px;
+}
+
+.addButton:hover {
+    opacity: 0.8;
+}
+
+.table {
+    background-color: white;
+    border: 1px solid rgb(197, 197, 197);
+    border-radius: 4px;
+    width: 100%;
+}
+
+.tableBody {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    border-bottom: 1px solid rgb(197, 197, 197);
+    display: flex;
+    justify-content: space-between;
+}
+
+.row:last-child {
+    border: none;
+}
+
+.cell {
+    padding: 0;
+    border-right: 1px solid rgb(197, 197, 197);
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+}
+
+.cell:last-child {
+    border: none;
+}
+
+.indexCell {
+    width: 30px;
+}
+
+.contentCell {
+    width: 145px;
+}
+
+.pen {
+    background: url('../../images/pen.png') center no-repeat;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.pen:hover {
+    opacity: 0.7;
+}
+
+.trash {
+    background: url('../../images/trash.png') center no-repeat;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.trash:hover {
+    opacity: 0.7;
+}
