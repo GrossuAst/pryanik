@@ -10,75 +10,88 @@ import Login from '../../pages/login';
 import NotFoundPage from '../../pages/not-found-page';
 import Modal from '../modal';
 
+// в компонент home добавить разметку на случай ошибки сервера при получении списка
+
 const App = () => {
     const location = useLocation();
     const mainPage = location.pathname === '/';
     const loginPage = location.pathname === '/login';
 
-    const [isLoggedIn, setLoggedIn] = useState(true);
+    const [isLoading, setLoading] = useState(false);
+    const [serverError, setServerError] = useState(false);
+    const [isLoggedIn, setLoggedIn] = useState(false);
     const [initialData, setInitialData] = useState(null);
 
     const [isModalOpen, setModal] = useState(false);
     const [elementInModal, setElementInModal] = useState(null);
 
     useEffect(() => {
-        login()
-            .then((res) => {
-                
-            })
-            .catch((err) => {
-                // console.log(err);
-            })
+        checkToken();
     }, []);
 
     useEffect(() => {
-        getData('supersecrettoken_for_user1')
-            .then((res) => {
-                setInitialData(res.data);
-            })
-            .catch((err) => {
-                // console.log(err)
-            })
-    }, []);
-
-    useEffect(() => {
-        createEntry()
-            .then((res) => {
-                // console.log(res);
-            })
-            .catch((err) => {
-                // console.log(err)
-            })
-    }, []);
+        if(isLoggedIn) {
+            setLoading(true);
+            getData(localStorage.getItem('token'))
+                .then((res) => {
+                    setInitialData(res.data);
+                })
+                .catch((err) => {
+                    setServerError(true);
+                })
+                .finally(() =>{
+                    setLoading(false);
+                })
+        };
+    }, [isLoggedIn]);
 
     function handleCloseModal() {
         setModal(false);
         setElementInModal(null);
     };
 
+    function checkToken() {
+        const token = localStorage.getItem('token');
+        if(token) {
+            setLoggedIn(true);
+        };
+    };
+
     return (
         <>     
             <div className={ styles.wrapper }>
 
-                { mainPage || loginPage ? <Header /> : <></> }
+                { mainPage || loginPage ? <Header setLoggedIn={ setLoggedIn } /> : <></> }
 
                 <Routes>
                     
                     <Route path='/' 
                         element={ 
                             <ProtectedRoute onlyAuthorized={ true } isLoggedIn={ isLoggedIn }
-                                component={ 
+                                component={
                                     <Home
                                         initialData={ initialData }
                                         setElementInModal={ setElementInModal }
                                         setModal={ setModal }
+                                        isLoading={ isLoading }
+                                        serverError={ serverError }
                                     />
                                 }
                             /> 
                         }
                     />
 
-                    <Route path='/login' element={ <ProtectedRoute onlyAuthorized={ false } component={ <Login /> } isLoggedIn={ isLoggedIn } /> } />
+                    <Route path='/login' 
+                        element={ 
+                            <ProtectedRoute onlyAuthorized={ false } isLoggedIn={ isLoggedIn } 
+                                component={ 
+                                    <Login 
+                                        setLoggedIn={ setLoggedIn }
+                                    /> 
+                                } 
+                            /> 
+                        } 
+                    />
 
                     <Route path='*' element={ <NotFoundPage /> } />
 

@@ -8,11 +8,11 @@ function checkRespone(res) {
     return Promise.reject(`Ошибка ${res.status}`);
 };
 
-export function login() {
+export function login(data) {
     return fetch(`${BASE_URL}/ru/data/v3/testmethods/docs/login`, {
         method: 'POST',
         headers: apiConfig.headers,
-        body: JSON.stringify({ username: 'user1', password: 'password' })
+        body: JSON.stringify({ username: data.username, password: data.password })
     }).then((res) => {
         return checkRespone(res);
     })

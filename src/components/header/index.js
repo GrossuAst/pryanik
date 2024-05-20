@@ -1,15 +1,23 @@
 import styles from './header.module.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ setLoggedIn }) => {
+    const navigate = useNavigate();
     const location = useLocation();
     const loginPage = location.pathname === '/login';
     const mainPage = location.pathname === '/';
 
+    function logout() {
+        const token = localStorage.getItem('token');
+        token && localStorage.removeItem('token');
+        setLoggedIn(false);
+        navigate('/login', { replace: true });
+    };
+
     return (
         <header className={ styles.header }>
             <div className={ styles.logo }>Logo</div>
-            { mainPage && <button className={ styles.logoutButton }>Выйти из профиля</button> }
+            { mainPage && <button className={ styles.logoutButton } onClick={ logout }>Выйти из профиля</button> }
         </header>
     )
 };
