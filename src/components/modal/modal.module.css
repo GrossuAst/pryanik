@@ -1,7 +1,7 @@
 .overlay {
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.7);
     align-items: center;
     justify-content: center;
     position: fixed;
@@ -13,4 +13,17 @@
 
 .overlayActive {
     display: flex;
+}
+
+.closeButton {
+    background: url('../../images/Close-Icon.svg');
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 70px;
+    right: 70px;
+}
+
+.closeButton:hover {
+    opacity: 0.7;
 }

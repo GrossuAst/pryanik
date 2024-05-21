@@ -1,5 +1,5 @@
 import styles from './app.module.css';
-import { login, getData, createEntry } from '../../utils/api';
+import { getData } from '../../utils/api';
 import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ import NotFoundPage from '../../pages/not-found-page';
 import Modal from '../modal';
 
 // в компонент home добавить разметку на случай ошибки сервера при получении списка
+// в модалку добавления записи добавить разметку на случай ошибки сервера 
 
 const App = () => {
     const location = useLocation();
@@ -61,7 +62,7 @@ const App = () => {
         <>     
             <div className={ styles.wrapper }>
 
-                { mainPage || loginPage ? <Header setLoggedIn={ setLoggedIn } /> : <></> }
+                { mainPage || loginPage ? <Header setLoggedIn={ setLoggedIn } setModal={ setModal } setElementInModal={ setElementInModal } isLoggedIn={ isLoggedIn } /> : <></> }
 
                 <Routes>
                     
@@ -71,6 +72,7 @@ const App = () => {
                                 component={
                                     <Home
                                         initialData={ initialData }
+                                        setInitialData={ setInitialData }
                                         setElementInModal={ setElementInModal }
                                         setModal={ setModal }
                                         isLoading={ isLoading }
@@ -99,7 +101,7 @@ const App = () => {
 
             </div>
             
-            <Modal isModalOpen={ isModalOpen } handleCloseModal={ handleCloseModal } /> 
+            <Modal isModalOpen={ isModalOpen } handleCloseModal={ handleCloseModal } elementInModal={ elementInModal } />
         </>
     )
 };

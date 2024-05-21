@@ -55,6 +55,11 @@
     border-bottom: 1px solid rgb(197, 197, 197);
     display: flex;
     justify-content: space-between;
+    font-size: 13px;
+}
+
+.row:first-child {
+    font-size: 16px;
 }
 
 .row:last-child {
@@ -89,10 +94,31 @@
     width: 30px;
     height: 30px;
     cursor: pointer;
+    position: relative; 
 }
 
 .pen:hover {
     opacity: 0.7;
+}
+
+.pen::after {
+    content: 'редактировать';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.pen:hover::after {
+    opacity: 1;
 }
 
 .trash {
@@ -100,8 +126,29 @@
     width: 30px;
     height: 30px;
     cursor: pointer;
+    position: relative;
 }
 
 .trash:hover {
     opacity: 0.7;
+}
+
+.trash::after {
+    content: 'удалить';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.trash:hover::after {
+    opacity: 1;
 }

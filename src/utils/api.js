@@ -30,13 +30,23 @@ export function getData(token) {
     })
 };
 
-export function createEntry(token) {
+export function createEntry(token, data) {
     return fetch(`${BASE_URL}/ru/data/v3/testmethods/docs/userdocs/create`, {
         method: 'POST',
         headers: {
             ...apiConfig.headers,
             'x-auth': token
-        }
+        },
+        body: JSON.stringify({ 
+            companySigDate: data.companySigDate,  
+            companySignatureName: data.companySignatureName,
+            documentName: data.documentName,
+            documentStatus: data.documentStatus,
+            documentType: data.documentType,
+            employeeNumber: data.employeeNumber,
+            employeeSigDate: data.employeeSigDate,
+            employeeSignatureName: data.employeeSignatureName
+        })
     }).then((res) => {
         return checkRespone(res);
     })
