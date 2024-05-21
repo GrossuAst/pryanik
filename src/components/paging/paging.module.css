@@ -1,0 +1,32 @@
+.container {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 52%;
+    justify-content: space-between;
+}
+
+.arrows {
+    display: flex;
+    align-items: center;
+}
+
+.number {
+
+}
+
+.arrow {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.leftArrow {
+    background: url('../../images/next-page-icon.svg') center no-repeat;
+    transform: scaleX(-1);
+}
+
+.rightArrow {
+    background: url('../../images/next-page-icon.svg') center no-repeat;
+}

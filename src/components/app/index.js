@@ -10,9 +10,6 @@ import Login from '../../pages/login';
 import NotFoundPage from '../../pages/not-found-page';
 import Modal from '../modal';
 
-// в компонент home добавить разметку на случай ошибки сервера при получении списка
-// в модалку добавления записи добавить разметку на случай ошибки сервера 
-
 const App = () => {
     const location = useLocation();
     const mainPage = location.pathname === '/';
@@ -31,6 +28,10 @@ const App = () => {
     }, []);
 
     useEffect(() => {
+        getInitialData();
+    }, [isLoggedIn]);
+
+    function getInitialData() {
         if(isLoggedIn) {
             setLoading(true);
             getData(localStorage.getItem('token'))
@@ -44,7 +45,7 @@ const App = () => {
                     setLoading(false);
                 })
         };
-    }, [isLoggedIn]);
+    };
 
     function handleCloseModal() {
         setModal(false);
@@ -71,6 +72,7 @@ const App = () => {
                             <ProtectedRoute onlyAuthorized={ true } isLoggedIn={ isLoggedIn }
                                 component={
                                     <Home
+                                        getInitialData={ getInitialData }
                                         initialData={ initialData }
                                         setInitialData={ setInitialData }
                                         setElementInModal={ setElementInModal }

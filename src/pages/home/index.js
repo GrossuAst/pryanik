@@ -1,10 +1,13 @@
 import styles from './home.module.css';
+import { useState } from 'react';
 import Preloader from '../../components/preloader';
+import ServerError from '../../components/serverError';
 import AddFileModal from '../../components/modal/add-file-modal';
+import Paging from '../../components/paging';
 
-// в компонент home добавить разметку на случай ошибки сервера при получении списка
-
-const Home = ({ initialData, setInitialData, setElementInModal, setModal, isLoading, serverError }) => {
+const Home = ({ getInitialData, initialData, setInitialData, setElementInModal, setModal, isLoading, serverError }) => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
 
     function formatDate(isoDate) {
         const date = new Date(isoDate);
@@ -18,16 +21,31 @@ const Home = ({ initialData, setInitialData, setElementInModal, setModal, isLoad
         setElementInModal(<AddFileModal initialData={ initialData } setInitialData={ setInitialData } setModal={ setModal } setElementInModal={ setElementInModal } />);
         setModal(true);
     };
+
+    function handlePageChange(page) {
+        if (page < 1 || page > totalPages) {
+            return;
+        }
+        setCurrentPage(page);
+    };
+
+    function getPageData() {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        return initialData.slice(startIndex, endIndex);
+    };
+
+    const totalPages = initialData && Math.ceil(initialData.length / itemsPerPage);
     
     return (
         <main className={ `${ styles.main } ${ isLoading && styles.preloaderContainer }` }>
             {
                 isLoading ? <Preloader /> : 
-                serverError ? <p>ошибка сервера</p> :
+                serverError ? <ServerError getInitialData={ getInitialData } /> :
                 (
                     <section>
                         <div className={ styles.tableHeader }>
-                            <h2 className={ styles.title }>Список документов</h2>
+                            <h2 className={ styles.title }>Список документов <span className={ styles.number }>(всего: { initialData.length })</span></h2>
                             <button className={ styles.addButton } onClick={ handleAddButtonClick }>Добавить запись</button>
                         </div>
                         <table className={ styles.table }>
@@ -46,7 +64,7 @@ const Home = ({ initialData, setInitialData, setElementInModal, setModal, isLoad
                                     <td className={ `${styles.cell} ${styles.indexCell}` }></td>
                                 </tr>
                                     {
-                                        initialData && initialData.map((item, index) => (
+                                        initialData && getPageData().map((item, index) => (
                                             <tr key={ item.id } className={ styles.row }>
                                                 <td className={ `${styles.cell} ${styles.indexCell}` }>{ index+1 }</td>
                                                 <td className={ `${styles.cell} ${styles.contentCell}` }>{ item.companySignatureName }</td>
@@ -65,6 +83,7 @@ const Home = ({ initialData, setInitialData, setElementInModal, setModal, isLoad
                                     }
                             </tbody>
                         </table>
+                        <Paging totalPages={ totalPages } currentPage={ currentPage } handlePageChange={ handlePageChange } />
                     </section>    
                 )
             }
