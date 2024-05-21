@@ -3,22 +3,38 @@ import { useState } from 'react';
 import Preloader from '../../components/preloader';
 import ServerError from '../../components/serverError';
 import AddFileModal from '../../components/modal/add-file-modal';
+import DeleteModal from '../../components/modal/delete-modal';
 import Paging from '../../components/paging';
 
 const Home = ({ getInitialData, initialData, setInitialData, setElementInModal, setModal, isLoading, serverError }) => {
+    const [elementToDelete, setElementToDelete] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
 
-    function formatDate(isoDate) {
-        const date = new Date(isoDate);
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        return `${day}.${month}.${year}`;
-    }
+    function handleDeleteButtonClick(element) {
+        setModal(true);
+        setElementToDelete(element);
+        setElementInModal(
+            <DeleteModal 
+                initialData={ initialData }
+                setInitialData={ setInitialData }
+                setModal={ setModal }
+                setElementInModal={ setElementInModal }
+                setElementToDelete={ setElementToDelete }
+                elementToDelete={ element }
+            />
+        );
+    };
 
     function handleAddButtonClick() {
-        setElementInModal(<AddFileModal initialData={ initialData } setInitialData={ setInitialData } setModal={ setModal } setElementInModal={ setElementInModal } />);
+        setElementInModal(
+            <AddFileModal 
+                initialData={ initialData } 
+                setInitialData={ setInitialData } 
+                setModal={ setModal } 
+                setElementInModal={ setElementInModal } 
+            />
+        );
         setModal(true);
     };
 
@@ -34,6 +50,14 @@ const Home = ({ getInitialData, initialData, setInitialData, setElementInModal, 
         const endIndex = startIndex + itemsPerPage;
         return initialData.slice(startIndex, endIndex);
     };
+
+    function formatDate(isoDate) {
+        const date = new Date(isoDate);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${day}.${month}.${year}`;
+    }    
 
     const totalPages = initialData && Math.ceil(initialData.length / itemsPerPage);
     
@@ -66,7 +90,7 @@ const Home = ({ getInitialData, initialData, setInitialData, setElementInModal, 
                                     {
                                         initialData && getPageData().map((item, index) => (
                                             <tr key={ item.id } className={ styles.row }>
-                                                <td className={ `${styles.cell} ${styles.indexCell}` }>{ index+1 }</td>
+                                                <td className={ `${styles.cell} ${styles.indexCell}` }>{ (currentPage - 1) * itemsPerPage + index + 1 }</td>
                                                 <td className={ `${styles.cell} ${styles.contentCell}` }>{ item.companySignatureName }</td>
                                                 <td className={ `${styles.cell} ${styles.contentCell}` }>{ item.employeeSignatureName }</td>
                                                 <td className={ `${styles.cell} ${styles.contentCell}` }>{ item.documentName }</td>
@@ -76,7 +100,7 @@ const Home = ({ getInitialData, initialData, setInitialData, setElementInModal, 
                                                 <td className={ `${styles.cell} ${styles.contentCell}` }>{ formatDate(item.employeeSigDate) }</td>
                                                 <td className={ `${styles.cell} ${styles.contentCell}` }>{ formatDate(item.companySigDate) }</td>
                                                 <td className={ `${styles.cell} ${styles.indexCell}` }><div className={ styles.pen }></div></td>
-                                                <td className={ `${styles.cell} ${styles.indexCell}` }><div className={ styles.trash }></div></td>
+                                                <td className={ `${styles.cell} ${styles.indexCell}` } onClick={ () => handleDeleteButtonClick(item) } ><div className={ styles.trash }></div></td>
                                             </tr>
                                             
                                         ))

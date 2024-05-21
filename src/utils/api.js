@@ -51,3 +51,15 @@ export function createEntry(token, data) {
         return checkRespone(res);
     })
 };
+
+export function deleteEntry(token, id) {
+    return fetch(`${BASE_URL}/ru/data/v3/testmethods/docs/userdocs/delete/${id}`, {
+        method: 'POST',
+        headers: {
+            ...apiConfig.headers,
+            'x-auth': token
+        }
+    }).then((res) => {
+        return checkRespone(res);
+    })
+};

@@ -1,5 +1,5 @@
 import styles from './app.module.css';
-import { getData } from '../../utils/api';
+import { getData, deleteEntry } from '../../utils/api';
 import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
