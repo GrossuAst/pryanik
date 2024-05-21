@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/GrossuAst/pryanik/static/css/main.831d53f5.css",
-    "main.js": "/GrossuAst/pryanik/static/js/main.580d8934.js",
-    "static/js/453.99932e8f.chunk.js": "/GrossuAst/pryanik/static/js/453.99932e8f.chunk.js",
-    "static/media/Roboto-Regular.woff2": "/GrossuAst/pryanik/static/media/Roboto-Regular.85035ffaf90190640f15.woff2",
-    "static/media/Roboto-Bold.woff2": "/GrossuAst/pryanik/static/media/Roboto-Bold.b317f30ddd6288151d29.woff2",
-    "static/media/Roboto-Medium.woff2": "/GrossuAst/pryanik/static/media/Roboto-Medium.d5c0703b659279cee801.woff2",
-    "static/media/Roboto-Medium.woff": "/GrossuAst/pryanik/static/media/Roboto-Medium.f859c5a22f95992860eb.woff",
-    "static/media/Roboto-Bold.woff": "/GrossuAst/pryanik/static/media/Roboto-Bold.bd043ecb53be565278f4.woff",
-    "static/media/Roboto-Regular.woff": "/GrossuAst/pryanik/static/media/Roboto-Regular.457c92bb62734e3030ed.woff",
-    "index.html": "/GrossuAst/pryanik/index.html",
-    "static/media/next-page-icon.svg": "/GrossuAst/pryanik/static/media/next-page-icon.2bc80229271785820f32.svg",
-    "static/media/Close-Icon.svg": "/GrossuAst/pryanik/static/media/Close-Icon.039f1f5203f653b4bacd.svg",
-    "main.831d53f5.css.map": "/GrossuAst/pryanik/static/css/main.831d53f5.css.map",
-    "main.580d8934.js.map": "/GrossuAst/pryanik/static/js/main.580d8934.js.map",
-    "453.99932e8f.chunk.js.map": "/GrossuAst/pryanik/static/js/453.99932e8f.chunk.js.map"
+    "main.css": "/pryanik/static/css/main.7fb34fc7.css",
+    "main.js": "/pryanik/static/js/main.d00cbbab.js",
+    "static/js/453.99932e8f.chunk.js": "/pryanik/static/js/453.99932e8f.chunk.js",
+    "static/media/Roboto-Regular.woff2": "/pryanik/static/media/Roboto-Regular.85035ffaf90190640f15.woff2",
+    "static/media/Roboto-Bold.woff2": "/pryanik/static/media/Roboto-Bold.b317f30ddd6288151d29.woff2",
+    "static/media/Roboto-Medium.woff2": "/pryanik/static/media/Roboto-Medium.d5c0703b659279cee801.woff2",
+    "static/media/Roboto-Medium.woff": "/pryanik/static/media/Roboto-Medium.f859c5a22f95992860eb.woff",
+    "static/media/Roboto-Bold.woff": "/pryanik/static/media/Roboto-Bold.bd043ecb53be565278f4.woff",
+    "static/media/Roboto-Regular.woff": "/pryanik/static/media/Roboto-Regular.457c92bb62734e3030ed.woff",
+    "static/media/next-page-icon.svg": "/pryanik/static/media/next-page-icon.2bc80229271785820f32.svg",
+    "index.html": "/pryanik/index.html",
+    "static/media/Close-Icon.svg": "/pryanik/static/media/Close-Icon.039f1f5203f653b4bacd.svg",
+    "main.7fb34fc7.css.map": "/pryanik/static/css/main.7fb34fc7.css.map",
+    "main.d00cbbab.js.map": "/pryanik/static/js/main.d00cbbab.js.map",
+    "453.99932e8f.chunk.js.map": "/pryanik/static/js/453.99932e8f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.831d53f5.css",
-    "static/js/main.580d8934.js"
+    "static/css/main.7fb34fc7.css",
+    "static/js/main.d00cbbab.js"
   ]
 }
