@@ -63,3 +63,26 @@ export function deleteEntry(token, id) {
         return checkRespone(res);
     })
 };
+
+export function editEntry(token, id, values) {
+    console.log(values)
+    return fetch(`${BASE_URL}/ru/data/v3/testmethods/docs/userdocs/set/${id}`, {
+        method: 'POST',
+        headers: {
+            ...apiConfig.headers,
+            'x-auth': token
+        },
+        body: JSON.stringify({ 
+            companySigDate: values.companySigDate,  
+            companySignatureName: values.companySignatureName,
+            documentName: values.documentName,
+            documentStatus: values.documentStatus,
+            documentType: values.documentType,
+            employeeNumber: values.employeeNumber,
+            employeeSigDate: values.employeeSigDate,
+            employeeSignatureName: values.employeeSignatureName
+        })
+        }).then((res) => {
+            return checkRespone(res);
+    })
+}

@@ -3,11 +3,11 @@ import styles from './paging.module.css';
 const Paging = ({ totalPages, currentPage, handlePageChange }) => {
     return (
         <div className={ styles.container }>
-            <p>страница <span>{ currentPage }</span> из <span>{ totalPages }</span></p>
+            <p className={ styles.page }>страница <span className={ styles.pageNumber }>{ currentPage }</span> из <span className={ styles.pageNumber }>{ totalPages }</span></p>
             <div className={ styles.arrows }>
                 <div className={ `${styles.arrow} ${styles.leftArrow}` } onClick={ () => handlePageChange(currentPage - 1) }></div>
                 
-                <p className={ styles.numer }>
+                <p className={ styles.number }>
                     { currentPage }    
                 </p>     
 

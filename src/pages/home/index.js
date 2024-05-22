@@ -4,12 +4,28 @@ import Preloader from '../../components/preloader';
 import ServerError from '../../components/serverError';
 import AddFileModal from '../../components/modal/add-file-modal';
 import DeleteModal from '../../components/modal/delete-modal';
+import EditFileModal from '../../components/modal/edit-file-modal';
 import Paging from '../../components/paging';
+import { formatDate } from '../../utils/constants';
 
 const Home = ({ getInitialData, initialData, setInitialData, setElementInModal, setModal, isLoading, serverError }) => {
     const [elementToDelete, setElementToDelete] = useState(null);
+    const [elementToEdit, setElementToEdit] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
+
+    function handleEditButtonClick(element) {
+        setModal(true);
+        setElementToEdit(element);
+        setElementInModal(
+            <EditFileModal  
+                element={ element }
+                initialData={ initialData }
+                setInitialData={ setInitialData }
+                setModal={ setModal }
+            />
+        );
+    };
 
     function handleDeleteButtonClick(element) {
         setModal(true);
@@ -51,14 +67,6 @@ const Home = ({ getInitialData, initialData, setInitialData, setElementInModal, 
         return initialData.slice(startIndex, endIndex);
     };
 
-    function formatDate(isoDate) {
-        const date = new Date(isoDate);
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        return `${day}.${month}.${year}`;
-    }    
-
     const totalPages = initialData && Math.ceil(initialData.length / itemsPerPage);
     
     return (
@@ -99,7 +107,7 @@ const Home = ({ getInitialData, initialData, setInitialData, setElementInModal, 
                                                 <td className={ `${styles.cell} ${styles.contentCell}` }>{ item.employeeNumber }</td>      
                                                 <td className={ `${styles.cell} ${styles.contentCell}` }>{ formatDate(item.employeeSigDate) }</td>
                                                 <td className={ `${styles.cell} ${styles.contentCell}` }>{ formatDate(item.companySigDate) }</td>
-                                                <td className={ `${styles.cell} ${styles.indexCell}` }><div className={ styles.pen }></div></td>
+                                                <td className={ `${styles.cell} ${styles.indexCell}` } onClick={ () => handleEditButtonClick(item) } ><div className={ styles.pen }></div></td>
                                                 <td className={ `${styles.cell} ${styles.indexCell}` } onClick={ () => handleDeleteButtonClick(item) } ><div className={ styles.trash }></div></td>
                                             </tr>
                                             

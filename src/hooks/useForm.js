@@ -22,6 +22,6 @@ export function useForm(initialValues) {
         },
         [setValues, setErrors, setIsValid]
     );
-  
+
     return {values, handleChange, setValues, errors, setErrors, resetForm, isValid};
 };

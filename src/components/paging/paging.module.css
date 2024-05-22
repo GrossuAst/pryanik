@@ -12,8 +12,19 @@
     align-items: center;
 }
 
-.number {
+.page {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+}
 
+.pageNumber {
+    font-size: 18px;
+}
+
+.number {
+    font-size: 14px;
+    margin: 0;
 }
 
 .arrow {
