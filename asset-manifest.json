@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/pryanik/static/css/main.7fb34fc7.css",
-    "main.js": "/pryanik/static/js/main.d00cbbab.js",
+    "main.js": "/pryanik/static/js/main.99d8c0be.js",
     "static/js/453.99932e8f.chunk.js": "/pryanik/static/js/453.99932e8f.chunk.js",
     "static/media/Roboto-Regular.woff2": "/pryanik/static/media/Roboto-Regular.85035ffaf90190640f15.woff2",
     "static/media/Roboto-Bold.woff2": "/pryanik/static/media/Roboto-Bold.b317f30ddd6288151d29.woff2",
@@ -13,11 +13,11 @@
     "index.html": "/pryanik/index.html",
     "static/media/Close-Icon.svg": "/pryanik/static/media/Close-Icon.039f1f5203f653b4bacd.svg",
     "main.7fb34fc7.css.map": "/pryanik/static/css/main.7fb34fc7.css.map",
-    "main.d00cbbab.js.map": "/pryanik/static/js/main.d00cbbab.js.map",
+    "main.99d8c0be.js.map": "/pryanik/static/js/main.99d8c0be.js.map",
     "453.99932e8f.chunk.js.map": "/pryanik/static/js/453.99932e8f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7fb34fc7.css",
-    "static/js/main.d00cbbab.js"
+    "static/js/main.99d8c0be.js"
   ]
 }
